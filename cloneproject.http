@@ -22,20 +22,18 @@
 #}
 
 
-#POST http://3.37.87.166/user/signup
-#Authorization: jj
+#POST http://3.37.87.166/user/login
 #Content-Type: application/json
 #
 #{
 #  "email":"test123456@test.com",
-#  "nickname": "머여",
-#  "password":"qwer12345",
-#  "confirmPassword": "qwer12345"
+#  "password": "qwer12345"
 #}
-POST http://localhost:4000/user/login
+#http://3.37.87.166/user/login
+POST http://localhost:4000/login
 Content-Type: application/json
 
 {
   "email":"test123456@test.com",
-  "password": "qwer12345"
+  "password":"qwer12345"
 }

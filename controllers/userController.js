@@ -9,7 +9,7 @@ const postUsersSchema = Joi.object({
     email: Joi.string().email().required(),
     nickname: Joi.string().required(),
     password: Joi.string().required(),//disallow(Joi.ref('nickname')).
-    confirmPassword: Joi.equal(Joi.ref('password'))
+    passwordCheck: Joi.equal(Joi.ref('password'))
 });
 
 const postAuthSchema = Joi.object({
@@ -39,9 +39,7 @@ const duplicatesCheck = async (req, res) => {
 const login = async (req, res) => {
     try {
         const {email, password} = await postAuthSchema.validateAsync(req.body);
-        console.log(email)
         const user = await userService.loginUser(email);
-        console.log(user)
         const authenticate = await bcrypt.compare(password, user.password);
         if (!user || !authenticate) {
             res.status(400).send({
@@ -50,9 +48,10 @@ const login = async (req, res) => {
             return;
         }
         const token = jwt.sign({userId: user.userId}, process.env.SECRET_KEY);
+        const nickname = user.nickname
 
         res.send({
-            result: true, token,
+            result: true, token, nickname
         });
     } catch (err) {
         console.log(err)
@@ -64,7 +63,7 @@ const login = async (req, res) => {
 }
 const signUp = async (req, res) => {
     try {
-        const {email, nickname, password, confirmPassword} = await postUsersSchema.validateAsync(req.body);
+        const {email, nickname, password, passwordCheck} = await postUsersSchema.validateAsync(req.body);
         const salt = await bcrypt.genSalt();
         const hashedPwd = await bcrypt.hash(password, salt);
         const createdUser = await userService.createUser({
@@ -82,9 +81,19 @@ const signUp = async (req, res) => {
         });
     }
 }
+const loginKakao = async (req, res) => {
+    const user = req.user;
+    const token = jwt.sign({ userId: user.userId }, process.env.SECRET_KEY);
+    const nickname = user.nickname
+
+    res.send({
+        result: true, token, nickname
+    });
+}
 
 module.exports = {
     login,
     signUp,
-    duplicatesCheck
+    duplicatesCheck,
+    loginKakao
 }

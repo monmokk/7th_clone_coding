@@ -12,7 +12,7 @@ module.exports = () => {
                 clientID: 'f2e72f87161c0d4520dc21d6229d6dff',
                 callbackURL: 'http://localhost:4000/user/kakao/callback',
             },
-            async (_, __, profile, done) => {
+            async (_, __, profile, next) => {
                 const email = profile._json.kakao_account.email
                 const nickname = profile.username
                 const password = profile.id+''
@@ -25,9 +25,9 @@ module.exports = () => {
                 if (!user) {
                     user = await User.create({ email, nickname, password:hashedPwd })
                 }
-//
-                const token = jwt.sign({ userId: user.userId }, process.env.SECRET_KEY);
-                return done(null, user, token)
+
+
+                return next(null, user)
             }
         )
     )
