@@ -24,6 +24,7 @@
 #Authorization: jj
 #Content-Type: application/json
 #
+#
 #{
 #  "email":"test123456@test.com",
 #  "nickname": "머여",
