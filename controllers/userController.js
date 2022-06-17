@@ -81,7 +81,7 @@ const signUp = async (req, res) => {
         });
     }
 }
-const loginKakao = async (req, res) => {
+const loginSNS = async (req, res) => {
     const user = req.user;
     const token = jwt.sign({ userId: user.userId }, process.env.SECRET_KEY);
     const nickname = user.nickname
@@ -95,5 +95,5 @@ module.exports = {
     login,
     signUp,
     duplicatesCheck,
-    loginKakao
+    loginSNS
 }
