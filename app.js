@@ -1,8 +1,8 @@
 const express = require('express');
-const routers = require("./routers");
+const routers = require("./routes");
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT;
 
 
 app.listen(port, () => {
