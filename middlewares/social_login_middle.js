@@ -27,7 +27,7 @@ module.exports = () => {
                 }
 
                 const token = jwt.sign({ userId: user.userId }, process.env.SECRET_KEY);
-
+                console.log("dev")
                 return done(null, user, token)
             }
         )
