@@ -29,10 +29,10 @@ const duplicatesCheck = async (req, res) => {
     const existUser = await userService.checkDuplicates(email, nickname)
     if (existUser.length) {
         res.status(400).send({
-            errorMessage: "이미 가입된 이메일 또는 닉네임이 있습니다.",
+            result: false
         });
     } else {
-        res.status(200).send({message: "사용 가능합니다"})
+        res.status(200).send({result: true})
     }
 
 };
@@ -45,19 +45,19 @@ const login = async (req, res) => {
         const authenticate = await bcrypt.compare(password, user.password);
         if (!user || !authenticate) {
             res.status(400).send({
-                errorMessage: "이메일 또는 패스워드가 잘못됐습니다.",
+                result: false
             });
             return;
         }
         const token = jwt.sign({userId: user.userId}, process.env.SECRET_KEY);
 
         res.send({
-            token,
+            result: true, token,
         });
     } catch (err) {
         console.log(err)
         res.status(400).send({
-            errorMessage: "이메일 또는 패스워드가 잘못됐습니다.",
+            result: false
         });
     }
 
@@ -73,12 +73,12 @@ const signUp = async (req, res) => {
             password: hashedPwd,
         });
         res.status(200).send({
-            result: createdUser,
+            result: true
         });
     } catch (err) {
         console.error(err);
         res.status(400).send({
-            message: `${err} : 회원가입 실패`,
+            result: false
         });
     }
 }
