@@ -11,6 +11,9 @@ router.get("/check/email/:email", userController.duplicatesCheck);
 router.get("/check/nickname/:nickname", userController.duplicatesCheck);
 
 router.get('/kakao', passport.authenticate('kakao', {session: false}));
-router.get('/kakao/callback',passport.authenticate('kakao',{session: false}), userController.loginKakao)
+router.get('/kakao/callback',passport.authenticate('kakao',{session: false, failureRedirect: '/'}), userController.loginKakao)
+
+router.get('/naver', passport.authenticate('naver', {session: false, authType: 'reprompt'}));
+router.get('/naver/callback', passport.authenticate('naver', {session: false, failureRedirect: '/' }), userController.loginKakao);
 
 module.exports = router;
