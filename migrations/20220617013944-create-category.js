@@ -5,7 +5,8 @@ module.exports = {
       categoryId: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        autoIncrement: true
       },
       category: {
         type: Sequelize.STRING
