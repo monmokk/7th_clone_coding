@@ -3,7 +3,8 @@ const routers = require("./routes");
 const kakaoLogin = require("./middlewares/social_login_middle")
 const app = express();
 const port = process.env.PORT;
-
+const cors = require('cors');
+app.use(cors());
 
 app.listen(port, () => {
     console.log(`
