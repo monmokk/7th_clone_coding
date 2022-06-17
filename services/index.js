@@ -1,1 +1,5 @@
-module.exports = {}
+const userService = require("./userService");
+
+module.exports = {
+    userService
+}
