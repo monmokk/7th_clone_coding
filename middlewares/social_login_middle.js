@@ -25,9 +25,8 @@ module.exports = () => {
                 if (!user) {
                     user = await User.create({ email, nickname, password:hashedPwd })
                 }
-
+//
                 const token = jwt.sign({ userId: user.userId }, process.env.SECRET_KEY);
-                console.log("dev")
                 return done(null, user, token)
             }
         )
