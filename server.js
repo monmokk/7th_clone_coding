@@ -16,9 +16,10 @@ server.listen(port || 3000, () => {
  */
 
 const chat = io.of('/chat').on('connection', socket => {
+    console.log('/chat user', socket.id)
     socket.on('chat', (data) => {
-        const count = io.of('/').sockets.size;
-        console.log(data);
+        const count = io.of('/count').sockets.size;
+        console.log(`n ${count} entered. msg: ${data}`);
         socket.emit('chat', data.msg);
     });
     socket.on('error', (err) => {
@@ -27,6 +28,7 @@ const chat = io.of('/chat').on('connection', socket => {
     socket.on('disconnect', () => {
     });
 })
+
 
 
 // const connectedUser = {}
