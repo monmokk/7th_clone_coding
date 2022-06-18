@@ -45,5 +45,5 @@ const checkAlreadyLogin = (req, res, next) => {
 
 module.exports = {
     checkLogin,
-    checkAlreadyLogin,
+    checkAlreadyLogin
 }
