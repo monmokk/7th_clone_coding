@@ -2,16 +2,6 @@ const jwt = require('jsonwebtoken');
 const { User } = require("../models");
 require('dotenv').config;
 
-const checkCounselor = (token) => {
-    try{
-        const [_, tokenVal] = token.split(' ');
-        const { userId } = jwt.verify(tokenVal, process.env.SECRET_KEY);
-
-        return userId;
-    }catch (e) {
-        console.log(e)
-    }
-}
 const checkLogin = (req, res, next) => {
     const { authorization } = req.headers;
     const [tokenType, tokenValue] = authorization.split(' ');
@@ -55,6 +45,5 @@ const checkAlreadyLogin = (req, res, next) => {
 
 module.exports = {
     checkLogin,
-    checkAlreadyLogin,
-    checkCounselor
+    checkAlreadyLogin
 }
