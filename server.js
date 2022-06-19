@@ -1,4 +1,4 @@
-const { server, io } = require('./app')
+const {server, io} = require('./app')
 const port = process.env.PORT;
 
 server.listen(port || 3000, () => {
@@ -9,18 +9,23 @@ server.listen(port || 3000, () => {
     `)
 })
 
-/**
- * todo
- * 1. count로 2인이상 접근못하게(상담사, 고객)
- * 2. 고객마다 room으로 분리?
- */
+const chat = io.of('/chat');
 
-const chat = io.of('/chat').on('connection', socket => {
+chat.on('connection', socket => {
     console.log('/chat user', socket.id)
+    socket.on('login', (data) => {
+        socket.nickname = data.nickname;
+        console.log(socket.nickname)
+    })
     socket.on('chat', (data) => {
-        const count = io.of('/count').sockets.size;
-        console.log(`n ${count} entered. msg: ${data}`);
-        socket.emit('chat', data.msg);
+        const msg = {
+            from: {
+                nickname: socket.nickname,
+            },
+            msg: data.msg
+        };
+        console.log(msg)
+        socket.emit('chat', msg);
     });
     socket.on('error', (err) => {
         console.log(`connect_error due to ${err.message}`);
@@ -28,22 +33,3 @@ const chat = io.of('/chat').on('connection', socket => {
     socket.on('disconnect', () => {
     });
 })
-
-
-
-// const connectedUser = {}
-// io.on('connection', (socket) => {
-//     socket.on('error', (err) => {
-//         console.log(`connect_error due to ${err.message}`);
-//     });
-//     socket.on('disconnect', () => {
-//     });
-//
-//     // const msg = {
-//     //     from: {
-//     //         name: socket.name,
-//     //         userid: socket.userid
-//     //     },
-//     //     msg: data.msg
-//     // };
-// })

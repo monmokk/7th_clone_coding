@@ -1,5 +1,7 @@
 const userController = require("./userController")
+const paymentController = require("./paymentController")
 
 module.exports = {
-    userController
+    userController,
+    paymentController
 }

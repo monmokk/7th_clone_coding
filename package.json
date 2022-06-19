@@ -20,7 +20,8 @@
     "mysql2": "^2.3.3",
     "passport-naver-v2": "^2.0.8",
     "sequelize": "^6.20.1",
-    "socket.io": "^4.5.1"
+    "socket.io": "^4.5.1",
+    "unirest": "^0.6.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16",
