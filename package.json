@@ -4,7 +4,7 @@
   "description": "7조 배달의 민족 클론코딩",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app"
   },
   "keywords": [],
   "author": "",
