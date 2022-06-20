@@ -18,9 +18,13 @@ chat.on('connection', socket => {
         console.log(socket.nickname)
     })
     socket.on('chat', (data) => {
+        const today = new Date();
+        const currentMD = today.getMonth()+1 + '/' + today.getDate()
+        const currentHMS = today.getHours() + ':' + today.getMinutes()
         const msg = {
             from: {
                 nickname: socket.nickname,
+                dateTime: currentMD + ' ' + currentHMS
             },
             msg: data.msg
         };
