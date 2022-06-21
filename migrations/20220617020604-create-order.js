@@ -5,7 +5,8 @@ module.exports = {
       orderId: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        autoIncrement: true
       },
       userId: {
         type: Sequelize.INTEGER

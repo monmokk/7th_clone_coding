@@ -2,9 +2,7 @@ npx sequelize model:generate --name Restaurant --attributes name:string,category
 npx sequelize model:generate --name Category --attributes category:string
 npx sequelize model:generate --name Menu --attributes menuName:string,price:integer,restaurantId:integer,explain:string,img:string
 npx sequelize model:generate --name User --attributes email:string,pwd:string,phone:integer,typeId:integer,address:string
-
 npx sequelize model:generate --name Review --attributes review:string,star:integer,phone:integer,userId:integer,restaurantId:integer
-
 npx sequelize model:generate --name Order --attributes userId:integer,restaurantId:integer,price:integer,menuList:string,menuCount:integer,paymentId:integer,payment:string,orderRequests:string
 
 npx sequelize db:migrate

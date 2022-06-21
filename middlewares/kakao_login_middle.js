@@ -1,6 +1,5 @@
 const passport = require('passport');
 const KakaoStrategy = require('passport-kakao').Strategy;
-const jwt = require('jsonwebtoken');
 
 const { User } = require("../models");
 const bcrypt = require("bcrypt");
@@ -9,7 +8,7 @@ module.exports = () => {
     passport.use('kakao',
         new KakaoStrategy(
             {
-                clientID: 'f2e72f87161c0d4520dc21d6229d6dff',
+                clientID: process.env.KAKAO_ID,
                 callbackURL: 'http://localhost:4000/user/kakao/callback',
             },
             async (_, __, profile, done) => {
@@ -25,9 +24,9 @@ module.exports = () => {
                 if (!user) {
                     user = await User.create({ email, nickname, password:hashedPwd })
                 }
-//
-                const token = jwt.sign({ userId: user.userId }, process.env.SECRET_KEY);
-                return done(null, user, token)
+
+
+                return done(null, user)
             }
         )
     )

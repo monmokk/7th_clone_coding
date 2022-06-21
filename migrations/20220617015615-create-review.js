@@ -5,7 +5,8 @@ module.exports = {
       reviewId: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        autoIncrement: true
       },
       review: {
         type: Sequelize.STRING

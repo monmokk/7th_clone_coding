@@ -5,7 +5,8 @@ module.exports = {
       menuId: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        autoIncrement: true
       },
       menuName: {
         type: Sequelize.STRING

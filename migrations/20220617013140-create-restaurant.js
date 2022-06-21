@@ -5,7 +5,8 @@ module.exports = {
       restaurantId: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        autoIncrement: true
       },
       name: {
         type: Sequelize.STRING

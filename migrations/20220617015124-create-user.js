@@ -5,12 +5,16 @@ module.exports = {
       userId: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        autoIncrement: true
       },
       email: {
         type: Sequelize.STRING
       },
-      pwd: {
+      nickname: {
+        type: Sequelize.STRING
+      },
+      password: {
         type: Sequelize.STRING
       },
       phone: {
