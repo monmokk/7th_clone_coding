@@ -17,11 +17,10 @@ const getList = async()=> {
   })
 }
 
-const getRestaurant = async() => {
-  return await Restaurant.findOne({
-    order: [['createdAt', 'DESC']],
-    include : [
-      {model : Category, attribuetes: ['categoryId']}
+const getRestaurant = async (restaurantId) => {
+  return await Restaurant.findByPk(restaurantId, {
+    include: [
+      { model: Menu }
     ]
   })
 }
