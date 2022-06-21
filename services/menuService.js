@@ -1,10 +1,9 @@
 const {Menu} = require("../models")
 
-const createMenu = async (restaurantId, menuName, price, explain ) => {
-    
-  return await Menu.create(restaurantId, menuName, price, explain)
+const createMenu = async (menu) => {
+    return await Menu.create(menu)
 }
 
- module.exports = {
- // createMenu
+module.exports = {
+    createMenu
 }

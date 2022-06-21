@@ -1,20 +1,22 @@
 
 
-const { restarunantService } = require("../services");
+const { restarunantService, menuService } = require("../services");
 
 // 가게 저장
 const createRestaurant = async (req, res) => {
   const {name, categoryId, location, phone, logoImg, openingHours, minPrice,
-  menuName, price, explain, menuImg,} = req.body;
+  menuName, price, explain, menuImg } = req.body;
   //const UserId = res.locals.user.id;
-  console.log(name, categoryId, location, phone, logoImg, openingHours, minPrice,menuName, price, explain,menuImg)
   try {
-    const createLists= await restarunantService.createList({
-      name, categoryId, location, phone, logoImg, openingHours, minPrice,
-      menuName, price, explain, menuImg});
-    console.log(createLists);
-   
-    res.status(200).json(createLists);
+    const createLists = await restarunantService.createList({
+      name, categoryId, location, phone, logoImg, openingHours, minPrice
+    });
+
+    const createMenu = await menuService.createMenu({
+      menuName, price, explain, menuImg, restaurantId:createLists.restaurantId
+    })
+
+    res.status(200).json(createMenu);
   } catch (error) {
     console.error(error);
   }
