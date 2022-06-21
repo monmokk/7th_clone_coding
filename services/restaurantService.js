@@ -1,5 +1,6 @@
 const {Restaurant} = require("../models")
 const {Category} = require("../models")
+const {Menu} = require("../models")
 
 const createList = async ( restaurant ) => {
     return await Restaurant.create(restaurant)
@@ -14,11 +15,10 @@ const getList = async () => {
     })
 }
 
-const getRestaurant = async () => {
-    return await Restaurant.findOne({
-        order: [['createdAt', 'DESC']],
+const getRestaurant = async (restaurantId) => {
+    return await Restaurant.findByPk(restaurantId, {
         include: [
-            {model: Category, attribuetes: ['categoryId']}
+            { model: Menu }
         ]
     })
 }
@@ -26,5 +26,5 @@ const getRestaurant = async () => {
 module.exports = {
     createList,
     getList,
-    getRestaurant,
+    getRestaurant
 }
