@@ -4,12 +4,12 @@ const { restarunantService } = require("../services");
 
 // 가게 저장
 const createRestaurant = async (req, res) => {
-  const {name, categoryId,  location, phone, img, openingHours, minPrice} = req.body;
+  const {name, categoryId, location, phone, img, openingHours, minPrice} = req.body;
   //const UserId = res.locals.user.id;
-  console.log(name,categoryId, location, phone, img, openingHours, minPrice)
+  console.log(name,  categoryId, location, phone, img, openingHours, minPrice)
   try {
     const createLists= await restarunantService.createList({
-       name, categoryId, location, phone, img, openingHours, minPrice});
+       name,  categoryId, location, phone, img, openingHours, minPrice});
     console.log(createLists);
    
     res.status(200).json(createLists);
@@ -54,8 +54,9 @@ const restaurantDetail = async(req, res)=> {
   }
 }
 
+
 module.exports = {
   createRestaurant,
   restaurantDetail,
-  restaurantList,
+  restaurantList
 }
