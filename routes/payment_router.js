@@ -9,7 +9,7 @@ const {response} = require("express");
 const iamUrl = 'https://api.iamport.kr'
 let tokenId;
 
-router.post('/complete', checkLogin, paymentController.paymentComplete)
+router.post('/complete', checkLogin, paymentController.paymentRequest)
 
 router.post('/admin/get-iamport-token', (req, res) => {
     unirest.post(`${iamUrl}/users/getToken`)

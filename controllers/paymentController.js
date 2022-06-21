@@ -1,6 +1,6 @@
 const { paymentService } = require("../services");
 
-const paymentComplete = async (req, res) => {
+const paymentRequest = async (req, res) => {
     try{
         const {imp_uid, merchant_id} = req.body;
         const {userId} = res.locals.user;
@@ -13,5 +13,5 @@ const paymentComplete = async (req, res) => {
     }
 }
 module.exports = {
-    paymentComplete
+    paymentRequest
 }

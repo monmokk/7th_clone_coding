@@ -9,27 +9,19 @@ server.listen(port || 3000, () => {
     `)
 })
 
-const chat = io.of('/chat');
 
-chat.on('connection', socket => {
+io.on('connection', socket => {
     console.log('/chat user', socket.id)
+    socket.on('join_room', (data)=>{
+        socket.join(data);
+        console.log(`User ${socket.id} joined room: ${data}`)
+    });
     socket.on('login', (data) => {
         socket.nickname = data.nickname;
         console.log(socket.nickname)
     })
     socket.on('chat', (data) => {
-        const today = new Date();
-        const currentMD = today.getMonth()+1 + '/' + today.getDate()
-        const currentHMS = today.getHours() + ':' + today.getMinutes()
-        const msg = {
-            from: {
-                nickname: socket.nickname,
-                dateTime: currentMD + ' ' + currentHMS
-            },
-            msg: data.msg
-        };
-        console.log(msg)
-        socket.emit('chat', msg);
+        socket.to(data.room).emit('chat', data);
     });
     socket.on('error', (err) => {
         console.log(`connect_error due to ${err.message}`);
