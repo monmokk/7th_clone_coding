@@ -22,8 +22,13 @@ const loginUser = async (email) => {
     })
 }
 
+const updateUser = async  ( userId, phone, address, postAddress ) => {
+    return User.update( { phone, address, postAddress }, { where: { userId } } )
+}
+
 module.exports = {
     checkDuplicates,
     createUser,
-    loginUser
+    loginUser,
+    updateUser
 }

@@ -1,8 +1,9 @@
 const Joi = require("joi");
+
 const {userService} = require("../services");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
+const {add} = require("nodemon/lib/rules");
 require('dotenv').config();
 
 const postUsersSchema = Joi.object({
@@ -36,6 +37,7 @@ const duplicatesCheck = async (req, res) => {
     }
 
 };
+
 const login = async (req, res) => {
     try {
         const {email, password} = await postAuthSchema.validateAsync(req.body);
@@ -92,10 +94,23 @@ const loginSNS = async (req, res) => {
         result: true, token, nickname, typeId
     });
 }
+const update = async (req, res) =>{
+    const { userId } = res.locals.user;
+    const { phone, address, postAddress } = req.body;
+
+    const updateUser = await userService.updateUser(userId, phone, address, postAddress);
+
+    if(updateUser){
+        res.status(200).send({
+            result: true
+        })
+    }
+}
 
 module.exports = {
     login,
     signUp,
     duplicatesCheck,
-    loginSNS
+    loginSNS,
+    update
 }
