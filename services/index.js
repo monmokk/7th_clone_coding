@@ -7,8 +7,7 @@ const categoryService = require("./categoryService")
 
 module.exports = {
     userService,
-    paymentService
-    userService,
+    paymentService,
     restarunantService,
     menuService,
     reviewService,

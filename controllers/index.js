@@ -7,8 +7,7 @@ const categoryController = require("./categoryController")
 
 module.exports = {
     userController,
-    paymentController
-    userController,
+    paymentController,
     restaurantController,
     menuController,
     reviewController,
