@@ -107,10 +107,19 @@ const update = async (req, res) =>{
     }
 }
 
+const getMyPage = async (req, res) => {
+    const {userId} = res.locals.user;
+    const user = await userService.getUserInfo(userId);
+
+    res.send({
+        result: true, user
+    });
+}
 module.exports = {
     login,
     signUp,
     duplicatesCheck,
     loginSNS,
-    update
+    update,
+    getMyPage
 }

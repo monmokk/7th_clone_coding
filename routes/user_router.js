@@ -7,7 +7,8 @@ const router = express.Router();
 
 router.post("/login", authMiddleWare.checkAlreadyLogin, userController.login);
 router.post("/signup", authMiddleWare.checkAlreadyLogin, userController.signUp);
-router.patch("/update", authMiddleWare.checkLogin, userController.update)
+router.patch("/update", authMiddleWare.checkLogin, userController.update);
+router.get("/my-page", authMiddleWare.checkLogin, userController.getMyPage);
 router.get("/check/email/:email", userController.duplicatesCheck);
 router.get("/check/nickname/:nickname", userController.duplicatesCheck);
 
