@@ -20,7 +20,7 @@ module.exports = {
       explain: {
         type: Sequelize.STRING
       },
-      img: {
+      menuImg: {
         type: Sequelize.STRING
       },
       createdAt: {

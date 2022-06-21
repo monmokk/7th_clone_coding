@@ -20,7 +20,7 @@ module.exports = {
       phone: {
         type: Sequelize.INTEGER
       },
-      img: {
+      logoImg: {
         type: Sequelize.STRING
       },
       openingHours: {
