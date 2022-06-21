@@ -52,3 +52,40 @@ Content-Type: application/json
 ###
 #iamport 토큰 겟
 POST http://localhost:4000/admin/get-iamport-token
+
+###
+//restaurant
+POST http://localhost:4000/api/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1NTE0MDExM30.SAnoYMJVL9oW-bXKyJnthyehBTvaJhIAEXIeEui3jeA
+Content-Type: application/json
+
+[
+  {
+    "name": "족발나라",
+    "categoryId": 1,
+    "location": "영등포점",
+    "phone": "07012345678",
+    "img": "url",
+    "openingHours": "오전11시",
+    "minPrice": 20000,
+    "logoImg": "logoImg"
+  },
+  {
+    "menuName": "족발(大)",
+    "price": 30000,
+    "explain": "일본이 놀라 자빠지고 중국이 탐내는 족발",
+    "menuImg": "menuImg"
+  },
+  {
+    "menuName": "보쌈(大)",
+    "price": 30000,
+    "explain": "보쌈 존맛",
+    "menuImg": "menuImg"
+  }
+]
+
+
+###
+//detailPage
+GET http://localhost:4000/api/post/11
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1NTE0MDExM30.SAnoYMJVL9oW-bXKyJnthyehBTvaJhIAEXIeEui3jeA
