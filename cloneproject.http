@@ -1,11 +1,4 @@
-###
-/// 걍 get
-GET http://localhost:4000/user/check/nickname/허허허
-
-###
-/// Listing
-GET http://localhost:4000/api/travel
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1NTE0MDExM30.SAnoYMJVL9oW-bXKyJnthyehBTvaJhIAEXIeEui3jeA
+#GET http://localhost:4000/user/check/nickname/허허허
 
 ###
 // delete
