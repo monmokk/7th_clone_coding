@@ -6,12 +6,16 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.INTEGER,
+<<<<<<< HEAD
+        autoIncrement: true
+=======
         autoIncrement: true,
+>>>>>>> development
       },
       name: {
         type: Sequelize.STRING
       },
-      category: {
+      categoryId: {
         type: Sequelize.STRING
       },
       location: {

@@ -22,8 +22,18 @@ const loginUser = async (email) => {
     })
 }
 
+const updateUser = async  ( userId, phone, address, postAddress ) => {
+    return User.update( { phone, address, postAddress }, { where: { userId } } )
+}
+
+const getUserInfo = async (userId) => {
+    return await User.findByPk(userId, {attributes: ['phone', 'address', 'postAddress']})
+}
+
 module.exports = {
     checkDuplicates,
     createUser,
-    loginUser
+    loginUser,
+    updateUser,
+    getUserInfo
 }

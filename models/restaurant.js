@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },    
     name: DataTypes.STRING,
-    category: DataTypes.STRING,
+    categoryId: DataTypes.STRING,
     location: DataTypes.STRING,
     phone: DataTypes.INTEGER,
     logoImg: DataTypes.STRING,

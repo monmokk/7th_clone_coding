@@ -1,9 +1,9 @@
 const {Restaurant} = require("../models")
 const {Category} = require("../models")
 
-const createList = async ( name, category, location, phone, openingHours, minPrice, img) => {
+const createList = async ( name,  categoryId, location, phone, openingHours, minPrice, img) => {
   return await Restaurant.create(
-    name,category, location, phone, openingHours, minPrice, img
+    name, categoryId, location, phone, openingHours, minPrice, img
     ) 
 
 }
@@ -17,7 +17,17 @@ const getList = async()=> {
   })
 }
 
+const getRestaurant = async() => {
+  return await Restaurant.findOne({
+    order: [['createdAt', 'DESC']],
+    include : [
+      {model : Category, attribuetes: ['categoryId']}
+    ]
+  })
+}
+
 module.exports = {
   createList,
-  getList
+  getList,
+  getRestaurant,
 }

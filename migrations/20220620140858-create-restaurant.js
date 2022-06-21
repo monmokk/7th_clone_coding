@@ -2,7 +2,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Restaurants', {
-      id: {
+      restaurantId: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.INTEGER,
@@ -20,7 +20,7 @@ module.exports = {
       phone: {
         type: Sequelize.INTEGER
       },
-      logoImg: {
+      img: {
         type: Sequelize.STRING
       },
       openingHours: {
