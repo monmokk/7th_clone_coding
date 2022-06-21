@@ -1,12 +1,12 @@
 const express = require("express");
-const authMiddleware = require('../middlewares/auth_middleware');
+const { checkAlreadyLogin } = require('../middlewares/auth_middleware');
 const { userController } = require("../controllers");
 const passport = require('passport');
 
 const router = express.Router();
 
-router.post("/login", authMiddleware.checkAlreadyLogin, userController.login);
-router.post("/signup", authMiddleware.checkAlreadyLogin, userController.signUp);
+router.post("/login", checkAlreadyLogin, userController.login);
+router.post("/signup", checkAlreadyLogin, userController.signUp);
 router.get("/check/email/:email", userController.duplicatesCheck);
 router.get("/check/nickname/:nickname", userController.duplicatesCheck);
 
