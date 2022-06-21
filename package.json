@@ -2,9 +2,9 @@
   "name": "7th_clone_coding",
   "version": "1.0.0",
   "description": "7조 배달의 민족 클론코딩",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon app"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",

@@ -6,5 +6,5 @@ const createMenu = async (restaurantId, menuName, price, explain ) => {
 }
 
  module.exports = {
-  createMenu
+ // createMenu
 }

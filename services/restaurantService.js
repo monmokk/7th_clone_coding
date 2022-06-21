@@ -1,11 +1,14 @@
 const {Restaurant} = require("../models")
 const {Category} = require("../models")
+const{Menu} = require("../models")
 
-const createList = async ( name,  categoryId, location, phone, openingHours, minPrice, img) => {
-  return await Restaurant.create(
-    name, categoryId, location, phone, openingHours, minPrice, img
-    ) 
-
+const createList = async ( name,  categoryId, location, phone, openingHours, minPrice, menuName, price, explain, menuImg, logoImg) => {
+    let restaurant =  await Restaurant.create({name, categoryId, location, phone, openingHours, minPrice, logoImg},
+         
+            
+    // let menu =  await Menu.create( menuName, price, explain, menuImg )   
+   
+   // return  restaurant
 }
 
 const getList = async()=> {

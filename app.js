@@ -27,8 +27,8 @@ const io = new Server(server, {
 
 
 app.use(express.json());
-kakaoLogin()
-naverLogin()
+//kakaoLogin()
+//naverLogin()
 
 app.use(routers);
 
