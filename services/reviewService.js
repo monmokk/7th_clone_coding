@@ -26,10 +26,14 @@ const findReview = async (reviewId) => {
 const patchReview = async (review, star, reviewId) => {
     await Review.update(
         {review, star},
+        {where: {reviewId}});
 
-        {where: {reviewId}},);
-
-    return await Review.findByPk(reviewId) //
+    return await Review.findByPk(reviewId, {
+        include: {
+            model: User,
+            attributes: ['nickname']
+        }
+    }) //
 }
 
 const deleteReview = async (reviewId) => {
@@ -39,11 +43,13 @@ const deleteReview = async (reviewId) => {
 }
 
 const getReviewList = async (restaurantId) => {
-    return await Review.findAll({where: {restaurantId},
+    return await Review.findAll({
+        where: {restaurantId},
         include: {
             model: User,
             attributes: ['nickname']
-        }})
+        }
+    })
 }
 
 
