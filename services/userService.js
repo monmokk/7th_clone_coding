@@ -30,10 +30,15 @@ const getUserInfo = async (userId) => {
     return await User.findByPk(userId, {attributes: ['phone', 'address', 'postAddress']})
 }
 
+const getUserNickname = async (userId) => {
+    return await User.findByPk(userId, {attributes: ['nickname']})
+}
+
 module.exports = {
     checkDuplicates,
     createUser,
     loginUser,
     updateUser,
-    getUserInfo
+    getUserInfo,
+    getUserNickname
 }

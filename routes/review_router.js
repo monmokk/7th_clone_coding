@@ -4,6 +4,7 @@ const {reviewController} = require("../controllers");
 const router = express.Router();
 
 router.post("/posts/:restaurantId/review",authMiddleware.checkLogin,reviewController.reviewLists);
+router.get("/posts/:restaurantId/review", authMiddleware.checkLogin,reviewController.getReviewList)
 router.put("/posts/:restaurantId/review/:reviewId",authMiddleware.checkLogin, reviewController.patchReviews);
 router.delete("/posts/:restaurantId/review/:reviewId",authMiddleware.checkLogin, reviewController.deleteReviews)
 

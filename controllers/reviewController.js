@@ -5,18 +5,22 @@ const reviewLists = async (req, res) => {
   const userId = res.locals.user.userId
   console.log(userId)
   try {
-    const {  review, star} = req.body;
+    const { review, star } = req.body;
     const {restaurantId} = req.params;
-    console.log( review, star, restaurantId, userId)
-    
+
     const reviewLists = await reviewService.createReview({ 
        review, star, restaurantId, userId });
-    console.log( reviewLists );
-   
     res.status(200).json(reviewLists);
   } catch (error) {
     console.error(error);
   }
+}
+
+const getReviewList = async (req, res) => {
+  const { restaurantId } = req.params;
+  const reviewLists = await reviewService.getReviewList(restaurantId)
+  console.log(reviewLists)
+  return res.status(200).json(reviewLists)
 }
 
 //리뷰 수정
@@ -67,5 +71,6 @@ const deleteReviews = async(req, res) => {
 module.exports = {
   reviewLists,
   patchReviews,
-  deleteReviews
+  deleteReviews,
+  getReviewList
 }

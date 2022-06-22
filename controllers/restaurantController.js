@@ -3,7 +3,8 @@ const {restarunantService, menuService} = require("../services");
 // 가게 저장
 const createRestaurant = async (req, res) => {
     try {
-        const {name, categoryId, location, phone, logoImg, openingHours, minPrice} = req.body[0];
+        const { name,  location, phone, logoImg, openingHours, minPrice, category } = req.body[0];
+        const { categoryId } = await restarunantService.getRestaurantId(category);
         const createLists = await restarunantService.createList({
             name, categoryId, location, phone, logoImg, openingHours, minPrice
         });

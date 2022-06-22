@@ -26,8 +26,13 @@ const getRestaurant = async (restaurantId) => {
   })
 }
 
+const getRestaurantId = async (category) => {
+  return await Category.findOne({ where: { category }})
+}
+
 module.exports = {
   createList,
   getList,
   getRestaurant,
+  getRestaurantId
 }

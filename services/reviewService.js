@@ -1,39 +1,56 @@
-
 const {Review} = require("../models")
+const {User} = require("../models")
 
-const createReview = async ( review, star, restaurantId, userId) => {
-  return await Review.create( review, star, restaurantId, userId)
+const createReview = async (review) => {
+    const created = await Review.create(review)
+    return await Review.findAll({
+        where: {restaurantId: created.restaurantId},
+        include: {
+            model: User,
+            attributes: ['nickname']
+        }
+    })
+
+
 }
 
-const findReview = async(reviewId) => {
-  return await Review.findOne({
-    where: { 
-      reviewId 
-    }
-  })
+const findReview = async (reviewId) => {
+    return await Review.findOne({
+        where: {
+            reviewId
+        }
+    })
 }
 
 
-const patchReview = async(review, star, reviewId) => {
-  await Review.update(
+const patchReview = async (review, star, reviewId) => {
+    await Review.update(
+        {review, star},
 
-    { review , star },
-    
-    { where: { reviewId } },);
+        {where: {reviewId}},);
 
-   return await Review.findByPk(reviewId) //
+    return await Review.findByPk(reviewId) //
 }
 
-const deleteReview = async(reviewId) => {
-  await Review.destroy({where : {reviewId}})
+const deleteReview = async (reviewId) => {
+    await Review.destroy({where: {reviewId}})
 
-  return await Review.findByPk(reviewId)
+    return await Review.findByPk(reviewId)
+}
+
+const getReviewList = async (restaurantId) => {
+    return await Review.findAll({where: {restaurantId},
+        include: {
+            model: User,
+            attributes: ['nickname']
+        }})
 }
 
 
 module.exports = {
-  createReview,
-  findReview,
-  patchReview,
-  deleteReview
+    createReview,
+    findReview,
+    patchReview,
+    deleteReview,
+    getReviewList
 }
