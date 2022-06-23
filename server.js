@@ -9,8 +9,8 @@ server.listen(port || 3000, () => {
     `)
 })
 
-
-io.on('connection', socket => {
+const chat = io.of('/chat')
+chat.on('connection', socket => {
     console.log('/chat user', socket.id)
     socket.on('join_room', (data)=>{
         socket.join(data);
